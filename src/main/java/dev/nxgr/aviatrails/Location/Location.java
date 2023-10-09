@@ -14,8 +14,6 @@ public class Location {
     private String cityCode;
     private double altitude;
     private double latitude;
-    @OneToMany(mappedBy = "departure", cascade = CascadeType.ALL)
-    private List<Route> routes;
 
     public Location(String airportCode, String cityCode, double altitude, double latitude) {
         this.airportCode = airportCode;
@@ -26,6 +24,14 @@ public class Location {
 
     public Location() {
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAirportCode() {
@@ -58,13 +64,5 @@ public class Location {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
-    }
-
-    public List<Route> getRoutes() {
-        return routes;
-    }
-
-    public void setRoutes(List<Route> routes) {
-        this.routes = routes;
     }
 }

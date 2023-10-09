@@ -1,9 +1,11 @@
 package dev.nxgr.aviatrails.Route;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/route")
 public class RouteController {
 
     public final RouteService routeService;
@@ -12,8 +14,18 @@ public class RouteController {
         this.routeService = routeService;
     }
 
-    @PostMapping("/route")
-    public void createRoute() {
-        routeService.addRoute();
+    @PostMapping
+    public void createRoute(@RequestBody RouteDto route) {
+        routeService.addRoute(route);
+    }
+
+    @GetMapping
+    public List<Route> getAll() {
+        return routeService.getAll();
+    }
+
+    @GetMapping("{id}")
+    public Route getById(@PathVariable Long id) {
+        return routeService.getById(id);
     }
 }
