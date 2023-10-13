@@ -1,24 +1,23 @@
 package dev.nxgr.aviatrails.Location;
 
-import dev.nxgr.aviatrails.Route.Route;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String country;
     private String airportCode;
+    private String airportName;
     private String cityCode;
-    private double altitude;
     private double latitude;
+    private double longitude;
 
-    public Location(String airportCode, String cityCode, double altitude, double latitude) {
+    public Location(String country, String airportCode, String airportName, String cityCode, double longitude, double latitude) {
         this.airportCode = airportCode;
         this.cityCode = cityCode;
-        this.altitude = altitude;
+        this.longitude = longitude;
         this.latitude = latitude;
     }
 
@@ -50,12 +49,12 @@ public class Location {
         this.cityCode = cityCode;
     }
 
-    public double getAltitude() {
-        return altitude;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setAltitude(double altitude) {
-        this.altitude = altitude;
+    public void setLongitude(double altitude) {
+        this.longitude = altitude;
     }
 
     public double getLatitude() {
@@ -64,5 +63,21 @@ public class Location {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getAirportName() {
+        return airportName;
+    }
+
+    public void setAirportName(String airportName) {
+        this.airportName = airportName;
     }
 }
