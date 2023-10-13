@@ -10,13 +10,13 @@ public class Location {
     private String country;
     private String airportCode;
     private String airportName;
-    private String cityCode;
+    private String cityName;
     private double latitude;
     private double longitude;
 
-    public Location(String country, String airportCode, String airportName, String cityCode, double longitude, double latitude) {
+    public Location(String country, String airportCode, String airportName, String cityName, double longitude, double latitude) {
         this.airportCode = airportCode;
-        this.cityCode = cityCode;
+        this.cityName = cityName;
         this.longitude = longitude;
         this.latitude = latitude;
     }
@@ -41,12 +41,12 @@ public class Location {
         this.airportCode = airportCode;
     }
 
-    public String getCityCode() {
-        return cityCode;
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setCityCode(String cityCode) {
-        this.cityCode = cityCode;
+    public void setCityName(String cityCode) {
+        this.cityName = cityCode;
     }
 
     public double getLongitude() {
