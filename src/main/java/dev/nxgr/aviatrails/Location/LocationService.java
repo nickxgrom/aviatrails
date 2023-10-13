@@ -1,9 +1,7 @@
 package dev.nxgr.aviatrails.Location;
 
-import jakarta.websocket.Session;
-import org.hibernate.boot.SessionFactoryBuilder;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -40,7 +38,9 @@ public class LocationService {
     }
 
     public List<Location> search(int page, int pageSize, String searchQuery) {
-        System.out.println(searchQuery);
-        return locationRepository.search(searchQuery);
+//        TODO: add limit of 50
+        Pageable paging = PageRequest.of(page, pageSize);
+
+        return locationRepository.search(paging, searchQuery);
     }
 }

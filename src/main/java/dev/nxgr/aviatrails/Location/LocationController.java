@@ -1,6 +1,5 @@
 package dev.nxgr.aviatrails.Location;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,7 +31,11 @@ public class LocationController {
     }
 
     @GetMapping("/search")
-    public List<Location> searchLocationList(@RequestParam Optional<String> searchQuery) {
-        return locationService.search(10, 3, searchQuery.get());
+    public List<Location> searchLocationList(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam Optional<String> searchQuery
+    ) {
+        return locationService.search(page, pageSize, searchQuery.orElse(""));
     }
 }
