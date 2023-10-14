@@ -20,9 +20,18 @@ public class RouteService {
 
     public void addRoute(RouteDto dto) {
         Location departure = locationService.getById(dto.getDepartureId());
-        Location destination = locationService.getById(dto.getDepartureId());
+        Location destination = locationService.getById(dto.getDestinationId());
 
-        Route route = new Route(departure, destination, dto.getFlightStartUTC(), dto.getFlightTimeMinutes(), dto.getDistance(), dto.getCoast(), dto.getAmount());
+        int distance = (int) (Math.acos(Math.sin(departure.getLatitude()) * Math.sin(destination.getLatitude())
+                        + Math.cos(departure.getLatitude()) * Math.cos(destination.getLatitude())
+                        * Math.cos(destination.getLongitude() - departure.getLongitude())) * 6371);
+
+        int flightTimeMinutes = (distance / 817) * 60;
+
+        System.out.println(distance);
+        System.out.println(flightTimeMinutes);
+
+        Route route = new Route(departure, destination, dto.getFlightStartUtc(), flightTimeMinutes, distance, dto.getCoast(), dto.getAmount());
 
         routeRepository.save(route);
     }

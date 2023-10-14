@@ -3,10 +3,7 @@ package dev.nxgr.aviatrails.Route;
 public class RouteDto {
     private Long departureId;
     private Long destinationId;
-    private Long flightStartUTC;
-
-    private Long flightTimeMinutes;
-    private int distance;
+    private Long flightStartUtc;
 
     private double coast;
     private int amount;
@@ -19,16 +16,8 @@ public class RouteDto {
         return destinationId;
     }
 
-    public Long getFlightStartUTC() {
-        return flightStartUTC;
-    }
-
-    public Long getFlightTimeMinutes() {
-        return flightTimeMinutes;
-    }
-
-    public int getDistance() {
-        return distance;
+    public Long getFlightStartUtc() {
+        return flightStartUtc;
     }
 
     public double getCoast() {

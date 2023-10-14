@@ -16,9 +16,9 @@ public class Route {
     @ManyToOne
     @JoinColumn(name = "destination")
     private Location destination;
-    private Long flightStartUTC;
+    private Long flightStartUtc;
 
-    private Long flightTimeMinutes;
+    private int flightTimeMinutes;
     private int distance;
     private double coast;
     private int amount;
@@ -47,19 +47,19 @@ public class Route {
         this.destination = destination;
     }
 
-    public Long getFlightStartUTC() {
-        return flightStartUTC;
+    public Long getFlightStartUtc() {
+        return flightStartUtc;
     }
 
-    public void setFlightStartUTC(Long flightStartUTC) {
-        this.flightStartUTC = flightStartUTC;
+    public void setFlightStartUtc(Long flightStartUTC) {
+        this.flightStartUtc = flightStartUTC;
     }
 
-    public Long getFlightTimeMinutes() {
+    public int getFlightTimeMinutes() {
         return flightTimeMinutes;
     }
 
-    public void setFlightTimeMinutes(Long flightTimeMinutes) {
+    public void setFlightTimeMinutes(int flightTimeMinutes) {
         this.flightTimeMinutes = flightTimeMinutes;
     }
 
@@ -87,21 +87,21 @@ public class Route {
         this.amount = amount;
     }
 
-    public Route(Long id, Location departure, Location destination, Long flightStartUTC, Long flightTimeMinutes, int distance, double coast, int amount) {
+    public Route(Long id, Location departure, Location destination, Long flightStartUtc, int flightTimeMinutes, int distance, double coast, int amount) {
         this.id = id;
         this.departure = departure;
         this.destination = destination;
-        this.flightStartUTC = flightStartUTC;
+        this.flightStartUtc = flightStartUtc;
         this.flightTimeMinutes = flightTimeMinutes;
         this.distance = distance;
         this.coast = coast;
         this.amount = amount;
     }
 
-    public Route(Location departure, Location destination, Long flightStartUTC, Long flightTimeMinutes, int distance, double coast, int amount) {
+    public Route(Location departure, Location destination, Long flightStartUtc, int flightTimeMinutes, int distance, double coast, int amount) {
         this.departure = departure;
         this.destination = destination;
-        this.flightStartUTC = flightStartUTC;
+        this.flightStartUtc = flightStartUtc;
         this.flightTimeMinutes = flightTimeMinutes;
         this.distance = distance;
         this.coast = coast;
