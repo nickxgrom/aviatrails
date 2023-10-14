@@ -2,6 +2,8 @@ package dev.nxgr.aviatrails.Route;
 
 import dev.nxgr.aviatrails.Location.Location;
 import dev.nxgr.aviatrails.Location.LocationService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -42,5 +44,10 @@ public class RouteService {
 
     public Route getById(Long id) {
         return routeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "not-found"));
+    }
+
+    public List<Route> search(int page, int pageSize, Long departureId, Long destinationId) {
+        Pageable paging = PageRequest.of(page, pageSize);
+        return routeRepository.search(paging, departureId, destinationId);
     }
 }

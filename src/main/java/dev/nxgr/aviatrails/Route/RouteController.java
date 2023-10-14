@@ -28,4 +28,14 @@ public class RouteController {
     public Route getById(@PathVariable Long id) {
         return routeService.getById(id);
     }
+
+    @GetMapping("/search")
+    public List<Route> search(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam Long departureId,
+            @RequestParam Long destinationId
+    ) {
+        return routeService.search(page, pageSize, departureId, destinationId);
+    }
 }
