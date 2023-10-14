@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface LocationRepository extends JpaRepository<Location, Long> {
-    @Query("select l from Location l where l.country like :searchQuery or l.cityName like :searchQuery or l.airportName like :searchQuery")
+    @Query("select l from Location l where l.country like %:searchQuery% or l.cityName like %:searchQuery% or l.airportName like %:searchQuery%")
     List<Location> search(Pageable pageable, @Param("searchQuery") String searchQuery);
 }
