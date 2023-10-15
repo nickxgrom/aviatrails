@@ -16,8 +16,8 @@ public class LocationController {
     }
 
     @PostMapping
-    public void add(@RequestBody Location location) {
-        locationService.add(location);
+    public Long add(@RequestBody Location location) {
+        return locationService.add(location).getId();
     }
 
     @GetMapping
@@ -37,5 +37,10 @@ public class LocationController {
             @RequestParam Optional<String> searchQuery
     ) {
         return locationService.search(page, pageSize, searchQuery.orElse(""));
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteById(@PathVariable Long id) {
+        locationService.delete(id);
     }
 }

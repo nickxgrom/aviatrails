@@ -20,7 +20,7 @@ public class RouteService {
         this.locationService = locationService;
     }
 
-    public void addRoute(RouteDto dto) {
+    public Long addRoute(RouteDto dto) {
         Location departure = locationService.getById(dto.getDepartureId());
         Location destination = locationService.getById(dto.getDestinationId());
 
@@ -30,12 +30,9 @@ public class RouteService {
 
         int flightTimeMinutes = (distance / 817) * 60;
 
-        System.out.println(distance);
-        System.out.println(flightTimeMinutes);
-
         Route route = new Route(departure, destination, dto.getFlightStartUtc(), flightTimeMinutes, distance, dto.getCoast(), dto.getAmount());
 
-        routeRepository.save(route);
+        return routeRepository.save(route).getId();
     }
 
     public List<Route> getAll() {

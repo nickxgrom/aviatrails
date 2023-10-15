@@ -1,5 +1,7 @@
 package dev.nxgr.aviatrails.Location;
 
+import dev.nxgr.aviatrails.Route.Route;
+import dev.nxgr.aviatrails.Route.RouteRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -11,9 +13,11 @@ import java.util.List;
 @Service
 public class LocationService {
     private final LocationRepository locationRepository;
+    private final RouteRepository routeRepository;
 
-    public LocationService(LocationRepository locationRepository) {
+    public LocationService(LocationRepository locationRepository, RouteRepository routeRepository) {
         this.locationRepository = locationRepository;
+        this.routeRepository = routeRepository;
     }
 
     public Location add(Location location) {
@@ -25,7 +29,11 @@ public class LocationService {
     }
 
     public void delete(Long id) {
-
+        List<Route> routes = routeRepository.findAllByDeparture_IdOrDestination_Id(id, id);
+        for (Route route : routes) {
+            routeRepository.deleteById(route.getId());
+        }
+        locationRepository.deleteById(id);
     }
 
     public List<Location> getAll() {

@@ -15,8 +15,8 @@ public class RouteController {
     }
 
     @PostMapping
-    public void createRoute(@RequestBody RouteDto route) {
-        routeService.addRoute(route);
+    public Long createRoute(@RequestBody RouteDto route) {
+        return routeService.addRoute(route);
     }
 
     @GetMapping

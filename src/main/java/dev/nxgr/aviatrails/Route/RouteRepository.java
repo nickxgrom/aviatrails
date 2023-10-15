@@ -14,4 +14,6 @@ public interface RouteRepository extends JpaRepository<Route, Long> {
         @Param("departure") Long departure,
         @Param("destination") Long destination
     );
+
+    List<Route> findAllByDeparture_IdOrDestination_Id(Long departure_id, Long destination_id);
 }

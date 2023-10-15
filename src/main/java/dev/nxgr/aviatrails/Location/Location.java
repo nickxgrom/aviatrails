@@ -1,6 +1,18 @@
 package dev.nxgr.aviatrails.Location;
 
+import dev.nxgr.aviatrails.Route.Route;
+import dev.nxgr.aviatrails.Route.RouteRepository;
 import jakarta.persistence.*;
+import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 @Entity
 public class Location {
@@ -14,7 +26,7 @@ public class Location {
     private double latitude;
     private double longitude;
 
-    public Location(String country, String airportCode, String airportName, String cityName, double longitude, double latitude) {
+    public Location(String country, String airportCode, String airportName, String cityName, double longitude, double latitude, RouteRepository routeRepository) {
         this.airportCode = airportCode;
         this.cityName = cityName;
         this.longitude = longitude;
@@ -22,7 +34,6 @@ public class Location {
     }
 
     public Location() {
-
     }
 
     public Long getId() {
