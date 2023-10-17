@@ -38,4 +38,9 @@ public class RouteController {
     ) {
         return routeService.search(page, pageSize, departureId, destinationId);
     }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        routeService.deleteById(id);
+    }
 }

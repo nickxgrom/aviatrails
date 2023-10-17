@@ -6,8 +6,6 @@ import jakarta.persistence.*;
 @Entity
 public class Route {
     @Id
-//    @SequenceGenerator(name = "route_sequence", sequenceName = "route_sequence")
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "route_sequence")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne

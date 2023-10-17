@@ -47,4 +47,7 @@ public class RouteService {
         Pageable paging = PageRequest.of(page, pageSize);
         return routeRepository.search(paging, departureId, destinationId);
     }
+    public void deleteById(Long id) {
+        routeRepository.deleteById(id);
+    }
 }
