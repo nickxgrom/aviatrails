@@ -10,10 +10,9 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-//    @JoinColumn(referencedColumnName = "user_id")
+    @ManyToOne
     private User user;
-    @OneToOne
+    @ManyToOne
     private Route route;
     private int amount;
 

@@ -1,9 +1,8 @@
 package dev.nxgr.aviatrails.Ticket;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/ticket")
@@ -15,7 +14,16 @@ public class TicketController {
     }
 
     @PostMapping
-    public void add(@RequestBody TicketDto ticket) {
-        ticketService.add(ticket);
+    public Ticket add(@RequestBody TicketDto ticket) {
+        return ticketService.add(ticket);
+    }
+
+    @GetMapping("{userId}")
+    public List<Ticket> getTicketList(
+        @PathVariable Long userId,
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int pageSize
+    ) {
+        return ticketService.getTicketList(page, pageSize, userId);
     }
 }
