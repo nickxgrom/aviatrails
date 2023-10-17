@@ -43,4 +43,9 @@ public class RouteController {
     public void delete(@PathVariable Long id) {
         routeService.deleteById(id);
     }
+
+    @PutMapping("{id}")
+    public Route update(@PathVariable Long id, @RequestBody RouteDto route) {
+        return routeService.update(id, route);
+    }
 }
