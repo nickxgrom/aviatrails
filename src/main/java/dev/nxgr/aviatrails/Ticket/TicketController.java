@@ -26,4 +26,13 @@ public class TicketController {
     ) {
         return ticketService.getTicketList(page, pageSize, userId);
     }
+
+    @PostMapping("/refund")
+    public void refund(
+        @RequestParam("userId") Long userId,
+        @RequestParam("ticketId") Long ticketId,
+        @RequestParam("refundAmount") int refundAmount
+    ) {
+        ticketService.refund(userId, ticketId, refundAmount);
+    }
 }
